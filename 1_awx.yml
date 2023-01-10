@@ -1,0 +1,20 @@
+---
+- name: Play_0 create vm
+  hosts: proxmox_1
+  roles:
+    - { role: proxmox, dest: 111 }
+    - { role: proxmox, dest: 165, ram: 16000, core: 4, cpu: host }
+- name: Play_1 dns server
+  hosts: dnsmasq_1
+  roles:
+    - { role: docker }
+    - { role: dnsmasq }
+- name: Play_2 gitea
+  hosts: k3s_1
+  roles:
+    - { role: k3s }
+    - { role: gitea }
+- name: Play_3
+  hosts: k3s_1
+  roles:
+    - { role: awx, install: true }

@@ -1,0 +1,5 @@
+---
+- name: Playbook_0
+  hosts: proxmox1
+  roles:
+    - { role: ssh, gen: ~/jocoutu/k4 }

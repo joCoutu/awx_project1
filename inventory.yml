@@ -1,0 +1,13 @@
+---
+all:
+  hosts:
+  children:
+    proxmox_1:
+      hosts:
+        localhost:
+    dnsmasq_1:
+      hosts:
+        192.168.1.111:
+    k3s_1:
+      hosts:
+        192.168.1.165:
