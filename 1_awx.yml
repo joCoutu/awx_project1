@@ -1,17 +1,28 @@
 ---
-- name: Playbook_0
+- name: Create vm
   hosts: proxmox_1
   roles:
-    - { role: proxmox, cmd: create, dest: 111 }
     - { role: proxmox, cmd: create, dest: 165, ram: 16000, core: 4, cpu: host }
-- name: Play_1 dns server
+    - { role: proxmox, cmd: create, dest: 111 }
+
+- name: Async install k3s
+  hosts: k3s_1
+  roles:
+    - { role: k3s, cmd: install }
+
+- name: Install dns server
   hosts: dnsmasq_1
   roles:
     - { role: docker, cmd: install }
     - { role: dnsmasq, cmd: install }
-- name: Play_2 gitea et awx
+
+- name: Create k3s apk
   hosts: k3s_1
   roles:
-    - { role: k3s, cmd: install }
-    - { role: gitea, cmd: install }
     - { role: awx, cmd: install }
+    - { role: gitea, cmd: install }
+
+- name: Install remote cli on localhost
+  hosts: proxmox_1
+  roles:
+    - { role: awx, cmd: cli }
