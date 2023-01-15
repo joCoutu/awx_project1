@@ -64,7 +64,8 @@ a credentials create --organization 'Default' --name 'k1' --credential_type 'Mac
 a inventory create --organization 'Default' --name 'inv1' --source_project 'awx_project1' #
 # https://awx.z/#/inventories/inventory/4/sources/add - inv_source1 - Sourced from a project - 'awx_project1' - file
 
-a job_templates create --name='Template1' --project 'awx_project1' --playbook hello_world.yml --inventory '1_awx.yml'
+# a job_templates create --name='Template1' --project 'awx_project1' --inventory 'inv1' --playbook '1_awx.yml' and sshkey
+# argument --timeout: conflicting option string: --timeout
 
 a job_templates launch 'Template1' --monitor
 a jobs list --all --name 'Template1' --filter 'name,created,status'
