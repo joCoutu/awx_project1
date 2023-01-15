@@ -1,6 +1,8 @@
 ---
 - name: Create vm
   hosts: proxmox_1
+  collections:
+    - jocoutu.bashtop
   roles:
     - { role: proxmox, cmd: create, dest: 165, ram: 16000, core: 4, cpu: host }
     - { role: proxmox, cmd: create, dest: 111 }
