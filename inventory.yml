@@ -4,7 +4,7 @@ all:
   children:
     proxmox_1:
       hosts:
-        localhost:
+        192.168.1.124:
     dnsmasq_1:
       hosts:
         192.168.1.111:
