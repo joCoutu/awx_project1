@@ -31,8 +31,8 @@
     - { role: gitea, cmd: install }
 
 - name: Install remote cli on localhost
-  hosts: proxmox_1
+  hosts: dnsmasq_1
   collections:
     - jocoutu.bashtop
   roles:
-    - { role: awx, cmd: cli }
+    - { role: awx, cmd: awxkit }

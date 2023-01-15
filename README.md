@@ -58,7 +58,7 @@ a me
 
 a project create --organization 'Default' --name 'awx_project1' --scm_type git --scm_url 'https://github.com/joCoutu/awx_project1'
 
-a credentials create --organization 'Default' --name 'k1' --credential_type 'Machine' # --inputs '{"username": "z", "ssh_key_data": "@k1"}'
+a credentials create --organization 'Default' --name 'k1' --credential_type 'Machine' # --inputs '{"username": "z", "ssh_key_data": "@k1"}' and username/ask passwd
 # https://awx.z/#/credentials/6/edit - ssh_key_data - k1
 
 a inventory create --organization 'Default' --name 'inv1' --source_project 'awx_project1' #
