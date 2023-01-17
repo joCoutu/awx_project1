@@ -1,0 +1,21 @@
+---
+- name: Create vm
+  hosts: proxmox_1
+  collections:
+    - jocoutu.bashtop
+  roles:
+    - { role: proxmox, cmd: clone, dest: 164, become: true }
+
+- name: Install ansible
+  hosts: ansible_1
+  collections:
+    - jocoutu.bashtop
+  roles:
+    - { role: ansible, cmd: install, dest: /home/z/jocoutu, become: true }
+
+- name: Destroy vm
+  hosts: proxmox_1
+  collections:
+    - jocoutu.bashtop
+  roles:
+    - { role: proxmox, cmd: destroy, dest: 164, become: true }

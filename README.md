@@ -42,7 +42,7 @@ callbacks_enabled = profile_tasks" > ansible.cfg
 git clone https://github.com/jocoutu/bashtop bashtop
 ansible -i 'localhost,' all -m include_role -a 'name=ansible' -e cmd=install -e dest=$BASHTOP_WORKDIR -K
 git clone https://github.com/jocoutu/awx_project1 awx_project1
-ansible-playbook -i awx_project1/inventory.yml awx_project1/1_awx.yml -K
+ansible-playbook -i awx_project1/inventory.yml awx_project1/awx.yml -K
 source ~/.bashrc
 ```
 
@@ -56,15 +56,15 @@ a # no bash completion just run command to get help
 a me
 # awx --conf.host https://awx.z --conf.username admin --conf.password Ansible123! --conf.insecure me
 
-a project create --organization 'Default' --name 'awx_project1' --scm_type git --scm_url 'https://github.com/joCoutu/awx_project1'
+a project clone --organization 'Default' --name 'awx_project1' --scm_type git --scm_url 'https://github.com/joCoutu/awx_project1'
 
-a credentials create --organization 'Default' --name 'k1' --credential_type 'Machine' # --inputs '{"username": "z", "ssh_key_data": "@k1"}' and username/ask passwd
+a credentials clone --organization 'Default' --name 'k1' --credential_type 'Machine' # --inputs '{"username": "z", "ssh_key_data": "@k1"}' and username/ask passwd
 # https://awx.z/#/credentials/6/edit - ssh_key_data - k1
 
-a inventory create --organization 'Default' --name 'inv1' --source_project 'awx_project1' #
+a inventory clone --organization 'Default' --name 'inv1' --source_project 'awx_project1' #
 # https://awx.z/#/inventories/inventory/4/sources/add - inv_source1 - Sourced from a project - 'awx_project1' - file
 
-# a job_templates create --name='Template1' --project 'awx_project1' --inventory 'inv1' --playbook '1_awx.yml' and sshkey
+# a job_templates clone --name='Template1' --project 'awx_project1' --inventory 'inv1' --playbook '1_awx.yml' and sshkey
 # argument --timeout: conflicting option string: --timeout
 
 a job_templates launch 'Template1' --monitor

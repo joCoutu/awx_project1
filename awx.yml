@@ -1,11 +1,11 @@
 ---
-# - name: Create vm
-#   hosts: proxmox_1
-#   collections:
-#     - jocoutu.bashtop
-#   roles:
-#     - { role: proxmox, cmd: create, dest: 165, ram: 16000, core: 4, cpu: host }
-#     - { role: proxmox, cmd: create, dest: 111 }
+- name: Create vm
+  hosts: proxmox_1
+  collections:
+    - jocoutu.bashtop
+  roles:
+    - { role: proxmox, cmd: clone, dest: 165, ram: 16000, core: 4, cpu: host }
+    - { role: proxmox, cmd: clone, dest: 111 }
 
 - name: Async install k3s
   hosts: k3s_1
@@ -20,15 +20,20 @@
     - jocoutu.bashtop
   roles:
     - { role: docker, cmd: install }
-    - { role: dnsmasq, cmd: install }
+    - { role: dnsmasq, cmd: docker }
 
 - name: Create k3s apk
   hosts: k3s_1
   collections:
     - jocoutu.bashtop
   roles:
-    - { role: awx, cmd: install }
-    - { role: gitea, cmd: install }
+    - { role: k3s, cmd: test }
+    - {role: awx,
+      cmd: k3s,
+      username: z,
+      awx_password: password,
+      pg_password: password }
+    - { role: gitea, cmd: k3s }
 
 - name: Install remote cli on localhost
   hosts: dnsmasq_1

@@ -4,7 +4,10 @@ all:
   children:
     proxmox_1:
       hosts:
-        192.168.1.124:
+        192.168.1.138:
+    amsible_1:
+      hosts:
+        192.168.1.164:
     dnsmasq_1:
       hosts:
         192.168.1.111:
